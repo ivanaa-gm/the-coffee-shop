@@ -1,8 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import { Order } from '../order/order.entity';
-import { Product } from '../product/entities/product.entity';
+import { Drink } from '../product/entities/drink.entity';
+import { Food } from '../product/entities/food.entity';
 
-@Entity()
+@Entity("users")
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -31,7 +39,11 @@ export class User {
   @OneToMany(() => Order, (order) => order.user, { cascade: true })
   orders: Order[];
 
-  @ManyToMany(() => Product, (product) => product.favoritedBy, { cascade: true })
-  @JoinTable()
-  favorites: Product[];
+  @ManyToMany(() => Food, { cascade: true })
+  @JoinTable({ name: 'user_favorite_foods' })
+  favoriteFoods: Food[];
+
+  @ManyToMany(() => Drink, { cascade: true })
+  @JoinTable({ name: 'user_favorite_drinks' })
+  favoriteDrinks: Drink[];
 }

@@ -1,8 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, TableInheritance, ManyToMany } from 'typeorm';
-import {User} from "../../user/user.entity"
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  TableInheritance,
+  ManyToMany,
+} from 'typeorm';
+import { User } from '../../user/user.entity';
 
-@Entity()
-@TableInheritance({ column: { type: 'varchar', name: 'type' } })
 export abstract class Product {
   @PrimaryGeneratedColumn()
   id: number;
@@ -16,12 +20,12 @@ export abstract class Product {
   @Column()
   description: string;
 
-  @Column("simple-array")
+  @Column('simple-array')
   ingredients: string[];
 
   @Column()
   image: string;
 
-  @ManyToMany(() => User, (user) => user.favorites)
-  favoritedBy: User[];
+  @Column()
+  flavor: string;
 }

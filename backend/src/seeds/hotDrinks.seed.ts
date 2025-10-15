@@ -10,7 +10,7 @@ export const seedHotDrinks = async (dataSource: DataSource) => {
       price: 2.5,
       description:
         'A pure, intense shot of finely ground Arabica coffee beans — strong, aromatic, and perfectly balanced for true coffee lovers.',
-      ingredients: ['Arabica coffee beans', 'water'],
+      ingredients: ['arabica coffee beans', 'water'],
       image: '/assets/drinks/hotDrinks/hd-espresso-classic.png',
       drinkType: 'hot',
       flavor: 'espresso',
@@ -20,7 +20,7 @@ export const seedHotDrinks = async (dataSource: DataSource) => {
       price: 3.2,
       description:
         'Twice the coffee, twice the energy. A bold, full-bodied espresso with deep caramel notes and a velvety crema finish.',
-      ingredients: ['Arabica coffee beans', 'water'],
+      ingredients: ['arabica coffee beans', 'water'],
       image: '/assets/drinks/hotDrinks/hd-espresso-double.png',
       drinkType: 'hot',
       flavor: 'espresso-double',

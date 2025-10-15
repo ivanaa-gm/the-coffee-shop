@@ -13,9 +13,8 @@ AppDataSource.initialize()
   .then(async (dataSource: DataSource) => {
     console.log('🔄 Resetting product table...');
 
-    await dataSource.query(
-      'TRUNCATE TABLE "product" RESTART IDENTITY CASCADE;',
-    );
+    await dataSource.query('TRUNCATE TABLE "foods" RESTART IDENTITY CASCADE;');
+    await dataSource.query('TRUNCATE TABLE "drinks" RESTART IDENTITY CASCADE;');
 
     await seedHotDrinks(dataSource);
     await seedIcedDrinks(dataSource);
@@ -27,6 +26,6 @@ AppDataSource.initialize()
     await seedPastries(dataSource);
 
     await dataSource.destroy();
-    console.log('✅✅✅ Database seeding complete.');
+    console.log('✅✅✅ Database seeding complete. ✅✅✅');
   })
   .catch((error) => console.error('❌ Error seeding DB:', error));

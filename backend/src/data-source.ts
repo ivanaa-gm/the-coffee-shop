@@ -7,4 +7,5 @@ export const AppDataSource = new DataSource({
   url: process.env.DATABASE_URL,
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: true,
+  dropSchema: true,
 });
