@@ -1,11 +1,7 @@
 import {
-  Entity,
   PrimaryGeneratedColumn,
   Column,
-  TableInheritance,
-  ManyToMany,
 } from 'typeorm';
-import { User } from '../../user/user.entity';
 
 export abstract class Product {
   @PrimaryGeneratedColumn()

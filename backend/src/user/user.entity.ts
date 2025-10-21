@@ -5,17 +5,19 @@ import {
   OneToMany,
   ManyToMany,
   JoinTable,
+  OneToOne,
 } from 'typeorm';
 import { Order } from '../order/order.entity';
 import { Drink } from '../product/entities/drink.entity';
 import { Food } from '../product/entities/food.entity';
+import { Cart } from '../cart/cart.entity';
 
-@Entity("users")
+@Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -33,17 +35,23 @@ export class User {
   @Column()
   address: string;
 
-  @Column()
+  @Column({ default: 0 })
   loyaltyPoints: number;
 
-  @OneToMany(() => Order, (order) => order.user, { cascade: true })
+  @Column({ type: 'date', default: () => 'CURRENT_DATE' })
+  registeredOn: Date;
+
+  @OneToOne(() => Cart, (cart) => cart.user, { cascade: true })
+  cart: Cart;
+
+  @OneToMany(() => Order, (order) => order.user, { cascade: true, lazy: true })
   orders: Order[];
 
-  @ManyToMany(() => Food, { cascade: true })
+  @ManyToMany(() => Food, { cascade: true, lazy: true })
   @JoinTable({ name: 'user_favorite_foods' })
   favoriteFoods: Food[];
 
-  @ManyToMany(() => Drink, { cascade: true })
+  @ManyToMany(() => Drink, { cascade: true, lazy: true })
   @JoinTable({ name: 'user_favorite_drinks' })
   favoriteDrinks: Drink[];
 }
